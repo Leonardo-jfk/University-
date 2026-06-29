@@ -1,4 +1,4 @@
-def prints(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10):
+def prints(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11):
     print('(r1) - Cantidad de tratamientos cargados:', r1)
     print('(r2) - Cantidad de tratamientos "A":', r2)
     print('(r3) - Cantidad de tratamientos "B":', r3)
@@ -12,27 +12,8 @@ def prints(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10):
         '(r10)- Porcentaje de tratamientos de alta complejidad '
         'con coste mayor al promedio:', r10
     )
+    print("check", r11)
 
-
-# def extraer_montos(linea):
-#
-#     montos = []
-#     num_actual = ""
-#
-#     for i in range(1, len(linea)):
-#         char = linea[i]
-#         if char != " " and char != "\n":
-#             num_actual += char  # Vamos armando el número dígito a dígito
-#         else:
-#             if num_actual != "":
-#                 montos.append(int(num_actual))
-#                 num_actual = ""
-#
-#     # Si quedó un número al final de la línea sin procesar
-#     if num_actual != "":
-#         montos.append(int(num_actual))
-#
-#     return montos
 
 
 def principal():
@@ -52,14 +33,10 @@ def principal():
     monto_a_l = 0
     monto_m_z = 0
 
+    tiene_h, tiene_h_a, r11, rta_helper,  aux_nombre, primera_vuelta = False, False, 0, "", "", True
+
     while linea != "":
 
-        # for linea in lineas:
-        # if linea[0] == "#":
-        #     linea_codes = str(linea.split())
-        #     monto_a_l = int(linea_codes[3:9])
-        #     monto_m_z = int(linea_codes[7:13])
-        #     monto_u = int(linea_codes[13:19])
         if linea[0] == "#":
             partes = linea.replace("#", "").split()
             if len(partes) >= 3:
@@ -142,6 +119,32 @@ def principal():
                 r5 += 1
             if linea[25] == "P":
                 r6 += 1
+
+
+        #     2do enunciado
+            if linea[25] == "H":
+                tiene_h = True
+            elif not tiene_h:
+                rta_helper = "No se encontró."
+
+            if tiene_h and linea[25] in "AUEIO":
+                tiene_h_a = True
+                if primera_vuelta:
+                    menor = int(linea[26:28])
+                    aux_nombre = nombre
+                    prinera_vuelta = False
+                if menor > int(linea[26:28]):
+                    menor = int(linea[26:28])
+                    # print(int(linea[26:27]))
+                    print(menor)
+                    aux_nombre = nombre
+
+                rta_helper = menor
+
+
+                r11 = rta_helper, aux_nombre
+                print(menor)
+
         linea = archivo.readline()
 
 
@@ -217,7 +220,7 @@ def principal():
     if contador_alta != 0:
         r10 = int((mayorespro / contador_alta) * 100)
 
-    prints(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10)
+    prints(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11)
 
 
 if __name__ == "__main__":
