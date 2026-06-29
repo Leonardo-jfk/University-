@@ -17,7 +17,7 @@ def prints(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11):
 
 
 def principal():
-    archivo = open("tratocheck.txt", "r")
+    archivo = open("tratamientos.txt", "r")
 
     r1, r2, r3, r4, r5, r6, r7 = 0, 0, 0, 0, 0, 0, 0
     r10 = 0
@@ -132,7 +132,7 @@ def principal():
                 if primera_vuelta:
                     menor = int(linea[26:28])
                     aux_nombre = nombre
-                    prinera_vuelta = False
+                    primera_vuelta = False
                 if menor > int(linea[26:28]):
                     menor = int(linea[26:28])
                     # print(int(linea[26:27]))
@@ -154,7 +154,7 @@ def principal():
     if r1 != 0:
         promedio = acummontos / r1
 
-    archivo = open("tratocheck.txt", "r")
+    archivo = open("tratamientos.txt", "r")
     linea = archivo.readline()
 
     while linea != "":
