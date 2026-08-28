@@ -13,7 +13,7 @@ def Cards():
             return str(str(self.nombre) + " of " + self.color)
 
 
-    coleur = random.choice(["Rouge", "or", "noir", "blanc"])
+    coleur = random.choice(["Rouge", "ORO", "noir", "blanc"])
     nom = random.randint(1,13)
     return Card(nom, coleur)
 
@@ -53,6 +53,7 @@ def compareCardColor(card1, card2):
         return print("empataron")
     elif cardColor1 == "ORO" and cardColor2 != "ORO":
         card1Won = True
+
         return card1Won
 
     elif cardColor2 == "ORO" and cardColor1 != "ORO":
