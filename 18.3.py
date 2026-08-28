@@ -38,8 +38,11 @@ def valorMediano(arregloTotal):
     return arregloTotal
 
 def moda(arregloTotal):
-    modal, modelhelper, counter1, counter2 = 0, 0, 1, 1
-    arregloRep = len(arregloTotal) * [1]
+    modal, modelhelper, counter1, counter2, modelMax, arregloRepHelper = 0, 0, 1, 1, 0, 0
+    arregloRep = len(arregloTotal) * [0]
+    n = len(arregloTotal)
+    arregloSameValue = []
+    secondListeModal = 0
 
 
     # for num1 in range(len(arregloTotal)):
@@ -95,33 +98,52 @@ def moda(arregloTotal):
 
 
   #
-    for num1 in range(1, len(arregloTotal)):
-        if arregloTotal[num1] == arregloTotal[num1 - 1]:
-            arregloRep[num1] += 1
-        # elif counter1 > counter2:
-        #     counter2 = counter1
-        #     modelhelper = arregloTotal[num1]
-        #
-        #     counter1 = 1
-
-    # if counter1 > counter2:
-    #     modelhelper = arregloTotal[-1]
+    print("autre", arregloRep)
+    for num1 in range(n):
+        for num2 in range(n):
+            if arregloTotal[num1] == arregloTotal[num2 ]:
+                arregloRep[num1] += 1
 
 
-    print(arregloRep)
-    print("reponse 3", modelhelper)
+    for num2 in range(n):
+        if arregloRep[num2] > arregloRep[num2 - 1]:
+            modelMax = arregloRep[num2]
+
+    modal = arregloTotal[modelMax]
+
+    print("check: ", arregloRep)
+    print("reponse 3l", modelMax)
+
+
+    # for i in range(n):
+    #     for j in range(n):
+    #         if arregloRep[modelMax] != arregloTotal[modelMax]:
+    #             print("trouve le meme")
+
+    # faire 3eme liste, avec les valeurs qu'ils ont modelMax dans la 2eme liste
+    for i in range(n):
+        if arregloRep[i] == modelMax:
+            arregloSameValue.append(arregloTotal[i])
+            # secondListeModal = arregloTotal[i]
+    print("reponse 4???", arregloSameValue)
+
+    # comparer si les valeurs sont les memes par tous dans cette liste
+    for num1 in range(1, len(arregloSameValue)):
+        if arregloSameValue[num1] != arregloSameValue[num1 - 1]:
+            return None
+
 
     if modelhelper == 1:
         return None
 
-    return modelhelper
+    return modelMax
 
 def main():
     n = 3000
     medio, finalMedio, mediano, modal = 0, 0, 0, 0
 
     # arregloTotal = [ random.randint(1,100) for i in range(n) ]
-    arregloTotal = [3, 2, 3, 6, 6, 7, 7, 7]
+    arregloTotal = [3, 3, 3, 6, 3, 3, 6, 7, 7, 7, 7, 7]
 
     finalMedio = (valorMedio(arregloTotal))
     print("reponse 1", finalMedio)
