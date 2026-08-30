@@ -1,4 +1,5 @@
 import random
+import soporte
 
 def valorMedio(arregloTotal):
     finalPromedio = 0
@@ -143,7 +144,8 @@ def main():
     medio, finalMedio, mediano, modal = 0, 0, 0, 0
 
     # arregloTotal = [ random.randint(1,100) for i in range(n) ]
-    arregloTotal = [3, 3, 3, 6, 3, 3, 6, 7, 7, 7, 7, 7]
+    arregloTotal = [3, 3, 3, 6, 3, 3, 6, 7, 7, 7, 7j, 7]
+    # arregloTotal = soporte.vector_known_range(3000)
 
     finalMedio = (valorMedio(arregloTotal))
     print("reponse 1", finalMedio)
