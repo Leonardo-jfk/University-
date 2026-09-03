@@ -44,7 +44,6 @@ def render():
         point = Coordinate(100, 100)
         point2 = Coordinate(face(canvas(100, 100))
 
-0)
 
 
 if __name__ == '__main__':

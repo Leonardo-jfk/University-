@@ -1,4 +1,3 @@
-import random
 import soporte
 
 def valorMedio(arregloTotal):

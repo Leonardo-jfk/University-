@@ -1,14 +1,14 @@
 
 import math
 class Point:
-    pass
-    def init(self, cx, cy, desc='p'):
-        p = Point()
-        p.x = cx
-        p.y = cy
-        p.descripcion = desc
+
+    def __init__(self, cx, cy, desc='p'):
+        # p = Point()
+        self.x = cx
+        self.y = cy
+        self.descripcion = desc
         return p
-    def to_string(p):
+    def __str__(p):
         r = str(p.descripcion) + '(' + str(p.x) + ', ' + str(p.y) + ')'
         return r
 
