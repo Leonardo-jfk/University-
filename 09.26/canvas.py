@@ -7,7 +7,7 @@ class Point:
         self.x = cx
         self.y = cy
         self.descripcion = desc
-        return p
+        # return p
     def __str__(p):
         r = str(p.descripcion) + '(' + str(p.x) + ', ' + str(p.y) + ')'
         return r
