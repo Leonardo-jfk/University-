@@ -48,7 +48,7 @@ def ordenar(vector, checker):
 def vectorSuma(vector, checker):
 
     n = len(vector)
-    t = int(input("numero de cantidad: "))
+    t = int(input("numero de cantidad min del acumulador: "))
     vectorSuma = 20 * [0]
     vectorSumeMayors = list()
 
@@ -62,6 +62,18 @@ def vectorSuma(vector, checker):
         if vectorSuma[i] > t:
             print(f"Acumulator for pais destino: {i} is {vectorSuma[i]}")
     print(vectorSuma)
+
+
+def findID(vector):
+
+    id = int(input("Ingrese el ID del pasajero: "))
+    for item in range(len(vector)):
+        if vector[item].pasajero == id:
+            print(f"número de asiento: {vector[item].numeroAsiento}")
+            print(f"Pais destino: {vector[item].paisDestino}")
+            break
+        elif item == len(vector) - 1:
+            print("there's no equial ID")
 
 
 
@@ -78,6 +90,7 @@ def main():
         print("3: mostrar vector")
         print("4: mostrar tickets mayores de num")
         print("5: importe de cada pais")
+        print("6: find an ID")
         print("0: salir")
 
         responce = int(input("Ingrese el numero: "))
@@ -122,6 +135,14 @@ def main():
                 print("no creaste vector")
 
 
+        # d)
+        # Determinar si existe un ticket cuyo número
+        # de identificación del pasajero sea igual a id
+        if responce == 6:
+            if vector != None:
+                findID(vector)
+            else:
+                print("no creaste vector")
 
 if __name__ == "__main__":
     main()
