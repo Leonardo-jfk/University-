@@ -14,8 +14,12 @@ class Estudiante:
         self.promedio = promedio
 
     def __str__(self):
-        return "Nombre: " + self.nombre + " - legajo: " + str(self.legajo) + " - promedio: " + str(self.promedio)
+        # return "Nombre: " + self.nombre + " - legajo: " + str(self.legajo) + " - promedio: " + str(self.promedio)
         # return 'Legajo: ' + str(self.legajo) + ' - Nombre: ' + self.nombre + ' - Promedio: ' + str(self.promedio)
+        r = '{:^30}' .format("Nombre: " + self.nombre)
+        r += '{:^30}' .format("Legajo: " + str(self.legajo))
+        r += '{:^30}' .format("Promedio: " + str(self.promedio))
+        return r
 
 
 
@@ -36,7 +40,7 @@ def checkMin(estudiantes):
         if estudiantes[i].promedio > x:
             # estudiantes.append(estudiantesAprobados)
             estudiantesAprobados.append(estudiantes[i])
-    print(estudiantesAprobados)
+    # print(estudiantesAprobados)
 
     for i in range(len(estudiantesAprobados) - 1):
         for j in range(i + 1, len(estudiantesAprobados)):
@@ -64,6 +68,12 @@ def main():
         print("3. ordenar")
         print("4. check who go")
 
+        # a, b = 2, 44
+        # cad = 'La suma de {0} + {1} es {2}'.format(a, b, a + b)
+        # print(cad)
+        # cad1 = '{:<5}'.format("gggggggggggggggg")
+        # print(cad1)
+        #
         start = int(input("Ingrese la deseada: "))
         if start == 1:
             for i in range(x):
