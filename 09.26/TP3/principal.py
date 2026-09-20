@@ -1,0 +1,129 @@
+
+
+import os
+import ClasePrincipal
+
+
+def cargar_tratamientos(filename):
+    vector = []
+    if not os.path.exists(filename):
+        return vector
+
+    archivo = open(filename, "rt")
+    primer_linea = True
+
+    for linea in archivo:
+        if primer_linea:
+            primer_linea = False
+            continue
+
+        linea = linea.strip()
+        if linea == "":
+            continue
+
+        campos = linea.split(',')
+        if len(campos) == 7:
+            dni = campos[0].strip()
+            nombre = campos[1].strip()
+            apellido = campos[2].strip()
+            icd10 = campos[3].strip()
+            monto_base = campos[4].strip()
+            complejidad = campos[5].strip()
+            id_alg = campos[6].strip()
+
+            t = ClasePrincipal.Tratamiento(dni, nombre, apellido, icd10, monto_base, complejidad, id_alg)
+            vector.append(t)
+
+    archivo.close()
+    return vector
+
+
+def procesar_opcion_1(vector):
+    # r1.1: Cantidad de tratamientos cargados
+    respuesta1 = len(vector)
+    print("r1.1:", respuesta1)
+
+    # r1.2: Apellido del quinto tratamiento de alta complejidad
+    contador_a = 0
+    respuesta2 = "No hay suficientes tratamientos de alta complejidad."
+
+    for t in vector:
+        if t.complejidad == 'A':
+            contador_a += 1
+            if contador_a == 5:
+                # El apellido del paciente del quinto tratamiento
+                respuesta2 = t.apellido
+                break
+
+
+    print("r1.2: ", respuesta2)
+
+
+def procesar_opcion_2(vector):
+    if len(vector) == 0:
+        return
+
+    # r2.1: Diferencia promedio entre monto final y base
+    suma_diferencia = 0
+    for t in vector:
+        suma_diferencia += (t.calcular_monto_final() - t.monto_base)
+    r2_1 = suma_diferencia / len(vector)
+
+    # r2.2 y r2.3: Letra con mayor cantidad de tratamientos (usando arreglos simples sin diccionarios)
+    conteos_letras = [0] * 26
+    for t in vector:
+        letra = t.icd10[0].upper()
+        indice = ord(letra) - ord('A')
+        if 0 <= indice < 26:
+            conteos_letras[indice] += 1
+
+    max_conteo = -1
+    indice_max = -1
+    for i in range(26):
+        if conteos_letras[i] > max_conteo:
+            max_conteo = conteos_letras[i]
+            indice_max = i
+
+    r2_2 = chr(indice_max + ord('A'))
+    r2_3 = max_conteo
+
+    # r2.4: DNI del tratamiento de mayor monto final entre los de alta complejidad
+    mayor_monto = -1
+    dni_mayor = -1
+
+    for t in vector:
+        if t.complejidad == 'A':
+            monto_final = t.calcular_monto_final()
+            if monto_final > mayor_monto:
+                mayor_monto = monto_final
+                dni_mayor = t.dni
+
+    r2_4 = dni_mayor if dni_mayor != -1 else "No hay tratamientos de alta complejidad."
+
+    print("r.2.1:", round(r2_1, 2))
+    print("r.2.2:", r2_2)
+    print("r.2.3:", r2_3)
+    print("r.2.4:", r2_4)
+
+
+def principal():
+    vector = []
+    opcion = -1
+
+    while opcion != 0:
+        opcion = int(input("Ingrese opción: "))
+
+        if opcion == 1:
+            vector = cargar_tratamientos("tratamientos.csv")
+            # vector = cargar_tratamientos("tratTest.csv")
+
+
+            procesar_opcion_1(vector)
+
+        elif opcion == 2:
+            procesar_opcion_2(vector)
+
+    print("Terminamos el trabajo! ")
+
+if __name__ == "__main__":
+    principal()
