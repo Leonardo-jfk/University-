@@ -1,12 +1,12 @@
 class Tratamiento:
-    def __init__(self, dni, nombre, apellido, icd10, monto_base, complejidad, id_alg):
+    def __init__(self, dni, nombre, apellido, icd10, monto_base, complejidad, algoritmo):
         self.dni = int(dni)
         self.nombre = nombre
         self.apellido = apellido
         self.icd10 = icd10
         self.monto_base = float(monto_base)
         self.complejidad = complejidad.strip().upper()
-        self.id_alg = int(id_alg)
+        self.algoritmo = int(algoritmo)
 
     def calcular_monto_final(self):
         # Descomponer el ICD10 para los cálculos
@@ -21,7 +21,7 @@ class Tratamiento:
             digito_punto = 0
 
         # Algoritmo 1 de cálculo del monto final
-        if self.id_alg == 1:
+        if self.algoritmo == 1:
             if self.monto_base <= 60000:
                 porcentaje_extra = 0.0
             else:
@@ -34,7 +34,7 @@ class Tratamiento:
             return self.monto_base + porcentaje_extra + suma_fija
 
         # Algoritmo 2 de cálculo del monto final
-        elif self.id_alg == 2:
+        elif self.algoritmo == 2:
             if 'A' <= letra <= 'P':
                 porcentaje_extra = self.monto_base * (digito_punto / 100.0)
             else:
@@ -46,7 +46,7 @@ class Tratamiento:
             return self.monto_base + porcentaje_extra
 
         # Algoritmo 3 de cálculo del monto final
-        elif self.id_alg == 3:
+        elif self.algoritmo == 3:
             monto_extra = 0.0
             if self.complejidad == 'A':
                 monto_extra += self.monto_base * 0.30

@@ -65,14 +65,14 @@ def procesar_opcion_2(vector):
 
     # r2.1: Diferencia promedio entre monto final y base
     suma_diferencia = 0
-    for t in vector:
-        suma_diferencia += (t.calcular_monto_final() - t.monto_base)
+    for trat in vector:
+        suma_diferencia += (trat.calcular_monto_final() - trat.monto_base)
     r2_1 = suma_diferencia / len(vector)
 
     # r2.2 y r2.3: Letra con mayor cantidad de tratamientos (usando arreglos simples sin diccionarios)
     conteos_letras = [0] * 26
-    for t in vector:
-        letra = t.icd10[0].upper()
+    for trat in vector:
+        letra = trat.icd10[0].upper()
         indice = ord(letra) - ord('A')
         if 0 <= indice < 26:
             conteos_letras[indice] += 1
@@ -91,12 +91,12 @@ def procesar_opcion_2(vector):
     mayor_monto = -1
     dni_mayor = -1
 
-    for t in vector:
-        if t.complejidad == 'A':
-            monto_final = t.calcular_monto_final()
+    for trat in vector:
+        if trat.complejidad == 'A':
+            monto_final = trat.calcular_monto_final()
             if monto_final > mayor_monto:
                 mayor_monto = monto_final
-                dni_mayor = t.dni
+                dni_mayor = trat.dni
 
     r2_4 = dni_mayor if dni_mayor != -1 else "No hay tratamientos de alta complejidad."
 
@@ -120,8 +120,11 @@ def principal():
 
             procesar_opcion_1(vector)
 
-        elif opcion == 2:
-            procesar_opcion_2(vector)
+        if opcion == 2:
+            if vector:
+                procesar_opcion_2(vector)
+            else:
+                print("No has creado un arreglo de tratamientos, vaya a la 1ra opcion")
 
     print("Terminamos el trabajo! ")
 
