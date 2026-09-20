@@ -70,22 +70,31 @@ def procesar_opcion_2(vector):
     r2_1 = suma_diferencia / len(vector)
 
     # r2.2 y r2.3: Letra con mayor cantidad de tratamientos (usando arreglos simples sin diccionarios)
+
+
+    abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     conteos_letras = [0] * 26
+
     for trat in vector:
-        letra = trat.icd10[0].upper()
-        indice = ord(letra) - ord('A')
-        if 0 <= indice < 26:
-            conteos_letras[indice] += 1
+        letra_paciente = trat.icd10[0].upper()
+
+        for i in range(26):
+            if abecedario[i] == letra_paciente:
+                conteos_letras[i] += 1
+                break
 
     max_conteo = -1
-    indice_max = -1
+    letra_mayor = ""
+
     for i in range(26):
         if conteos_letras[i] > max_conteo:
             max_conteo = conteos_letras[i]
-            indice_max = i
+            letra_mayor = abecedario[i]
 
-    r2_2 = chr(indice_max + ord('A'))
+    r2_2 = letra_mayor
     r2_3 = max_conteo
+
+
 
     # r2.4: DNI del tratamiento de mayor monto final entre los de alta complejidad
     mayor_monto = -1
