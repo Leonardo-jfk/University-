@@ -71,7 +71,6 @@ def procesar_opcion_2(vector):
 
     # r2.2 y r2.3: Letra con mayor cantidad de tratamientos (usando arreglos simples sin diccionarios)
 
-
     abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     conteos_letras = [0] * 26
 
@@ -107,7 +106,11 @@ def procesar_opcion_2(vector):
                 mayor_monto = monto_final
                 dni_mayor = trat.dni
 
-    r2_4 = dni_mayor if dni_mayor != -1 else "No hay tratamientos de alta complejidad."
+    # r2_4 = dni_mayor if dni_mayor != -1 else "No hay tratamientos de alta complejidad."
+    if dni_mayor != -1:
+        r2_4 = dni_mayor
+    else:
+        r2_4 = "No hay tratamientos de alta complejidad."
 
     print("r.2.1:", round(r2_1, 2))
     print("r.2.2:", r2_2)
