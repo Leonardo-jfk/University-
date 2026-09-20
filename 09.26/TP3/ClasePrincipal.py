@@ -63,7 +63,7 @@ class Tratamiento:
 
             return self.monto_base + monto_extra
 
-        # Algoritmo Normal (heredado del TP2)
+        # Algoritmo Normal (del TP2)
         else:
             porcentaje_extra = self.monto_base * (digito_punto / 100.0)
             monto_final = self.monto_base + porcentaje_extra
