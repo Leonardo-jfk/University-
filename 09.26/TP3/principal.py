@@ -17,9 +17,9 @@ def cargar_tratamientos(filename):
             primer_linea = False
             continue
 
-        linea = linea.strip()
-        if linea == "":
-            continue
+        # linea = linea.strip()
+        # if linea == "":
+        #     continue
 
         campos = linea.split(',')
         if len(campos) == 7:
