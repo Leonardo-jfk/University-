@@ -137,8 +137,54 @@ def encontrar_paciente(pacientesVector):
     # else:
     return False
 
+
+
+
+def grabar_en_file(pacientesVector):
+    nameFile = "grabar_4_file.dat"
+
+
+    file = open(nameFile, "wb")
+    for paciente in range(len(pacientesVector)):
+        pickle.dump(pacientesVector[paciente], file)
+
+    file.close()
+
+    return nameFile
+
+
+def mostrar_archivo(grabarFileName):
+    file = open(grabarFileName, "rb")
+    print("pacientes del archivo: ")
+    pointer = file.tell()
+    endOfFile = os.path.getsize(grabarFileName)
+
+    while pointer < endOfFile:
+        print(pickle.load(file))
+        pointer = file.tell()
+
+    file.close()
+    print()
+
+def arregloTunto7(grabarFileName):
+    file = open(grabarFileName, "rb")
+    pointer = file.tell()
+    endOfFile = os.path.getsize(grabarFileName)
+    vectorTunto7 = []
+
+    while pointer < endOfFile:
+        paciente = pickle.load(file)
+        enfermedad = paciente.codeEnfermedad
+        if enfermedad == 8 or enfermedad == 9:
+            vectorTunto7.append(paciente)
+
+        pointer = file.tell()
+
+    file.close()
+    return vectorTunto7
+
 def main():
-    pacientesVector, vector_d_dias = None, None
+    pacientesVector, vector_d_dias, grabarFileName = None, None, None
     response = -1
 
     print("bienvenido! ")
@@ -172,6 +218,25 @@ def main():
 
                 if not paciente_encontrado:
                     print("dar un mensaje de error")
+
+        elif response == 4:
+            if pacientesVector:
+                mostrar_arreglo(pacientesVector)
+
+        elif response == 5:
+            if pacientesVector:
+                grabarFileName = grabar_en_file(pacientesVector)
+
+        elif response == 6:
+            if pacientesVector and grabarFileName:
+                mostrar_archivo(grabarFileName)
+
+        elif response == 7:
+            if pacientesVector and grabarFileName:
+                arreglo7 = arregloTunto7(grabarFileName)
+                print("ultimo arreglo7: ")
+                mostrar_arreglo(arreglo7)
+
 
 
 if __name__ == "__main__":
