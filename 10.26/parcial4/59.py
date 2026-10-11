@@ -23,11 +23,12 @@ class Articulo:
 def cargar_arreglo_ordenado():
     vector = []
     n = int(input("cant de articulos: "))
-    titulos = ["aaaa", "harry", "hobbit", "lord of ", "game of", "star wars"]
+    titulos = ["aaaa", "harry", "hobbit", "lord of", "game of", "star wars"]
+    titulosHelp = ["Holms", "Duman", "Lupin", "Napoleon"]
 
     for art in range(n):
         codigo = random.randint(100, 999)
-        titulo = random.choice(titulos)
+        titulo = random.choice(titulos) + random.choice(titulosHelp)
         paginas = random.randint(1, 99)
         tipo = random.randint(0, 9)
         idioma = random.randint(0, 5)
@@ -63,8 +64,68 @@ def mostrar_arreglo(vector):
     for art in range(cant):
         print(vector[art])
 
+
+
+
+def buscar_titulo(vector, iteamToCkeck):
+
+    cant = len(vector)
+    x = input("Ingrese el nombre a buscar: ")
+
+    for i in range(cant):
+        if str(getattr(vector[i], iteamToCkeck)) == x:
+            return print(vector[i])
+
+
+    print("ce n'existe pas")
+
+def conteo(vector):
+    cant = len(vector)
+    cant_tipo = 10
+    cant_idioma = 6
+
+    # la cantidad de artículos por tipo e idioma
+    arreglo_cantador = [[0 for i in range(cant_idioma)] for j in range(cant_tipo)]
+
+    for i in range(10):
+        print(arreglo_cantador[i])
+
+    # for tipo in range(10):
+    #     for idioma in range(5):
+    #         if vector[tipo].idioma == idioma:
+    #             arreglo_cantador[idioma][tipo] += 1
+    for articulo in vector:
+        arreglo_cantador[articulo.tipo][articulo.idioma] += 1
+
+
+    for i in range(10):
+        print(arreglo_cantador[i])
+
+    return arreglo_cantador
+
+
+def crear_archivo(vector, nameOfFile):
+    cant = len(vector)
+    file = open(nameOfFile, "wb")
+    for i in range(cant):
+        if vector[i].paginas > 10:
+            pickle.dump(vector[i], file)
+
+
+    file.close()
+
+
+def mostrar_archivo(nameOfFile):
+
+    file = open(nameOfFile, "rb")
+
+    while file.tell() < os.path.getsize(nameOfFile):
+        print(pickle.load(file))
+
+    file.close()
+
 def main():
-    arreglo_fait = False
+    arreglo_fait, iteamToCkeck = False, ""
     nameOfFile = 'articulos.edi'
     vector = []
     op = -1
@@ -86,16 +147,19 @@ def main():
         if arreglo_fait:
             if op == 2:
                 mostrar_arreglo(vector)
-            # elif op == 3:
-            #     buscar_titulo(p)
-            # elif op == 4:
-            #     buscar_codigo(p)
-            # elif op == 5:
-            #     conteo(p)
-            # elif op == 6:
-            #     crear_archivo(p)
-            # elif op == 7:
-            #     mostrar_archivo()
+            elif op == 3:
+                iteamToCkeck = "titulo"
+                buscar_titulo(vector, iteamToCkeck)
+            elif op == 4:
+                iteamToCkeck = "codigo"
+                buscar_titulo(vector, iteamToCkeck)
+            elif op == 5:
+                arreglo_cantador = conteo(vector)
+            elif op == 6:
+                nameOfFile = "acrivo.dat"
+                crear_archivo(vector, nameOfFile)
+            elif op == 7:
+                mostrar_archivo(nameOfFile)
         else:
             print("l'opcion 1")
 
