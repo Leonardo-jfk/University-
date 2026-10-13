@@ -9,8 +9,10 @@ def cargar_arreglo():
     familien = ["miller", "nouer", "kross", "schwaiteiger", "schwarz"]
     orientaciones = ["Norte", "Sur", "Este", "Oeste"]
     vector = []
+    # vector = [None] * quantitat
 
     for lote in range(quantitat):
+
         nombre = random.choice(namen) + random.choice(familien)
         numManzana = random.randint(1,35)
         numLote = random.randint(1,20)
@@ -18,9 +20,29 @@ def cargar_arreglo():
         orientacion = random.randint(1,4)
         superficie = random.randint(100,9999)
         monto = random.randint(100_000,999_999)
+        # insert not in orden:
+        # vector.append(claseTerreno.Lote(nombre, numManzana, numLote, orientacion, superficie, monto))
 
-        vector.append(claseTerreno.Lote(nombre, numManzana, numLote, orientacion, superficie, monto))
 
+
+        # insert in orden  por nombre del propietario:
+        izq, posicion, duplicate = 0, 0, False
+        der = len(vector)
+        while izq < der:
+            centro = (izq + der) // 2
+
+            if vector[centro].nombre < nombre:
+                izq = centro + 1
+
+            elif vector[centro].nombre > nombre:
+                der = centro
+
+            else:
+                duplicate = True
+                break
+
+        if not duplicate:
+            vector[izq:izq] = [claseTerreno.Lote(nombre, numManzana, numLote, orientacion, superficie, monto)]
 
     return vector
 
