@@ -18,7 +18,7 @@ def cargar_arreglo():
 
 
     for jean in range(n):
-        codigo = random.randint(100,9999)
+        codigo = random.randint(100,105)
         modelo = random.choice(modelos)
         largo = random.randint(30, 50)
         cintura = random.randint(30, 50)
@@ -26,22 +26,34 @@ def cargar_arreglo():
         stock = random.randint(30, 500)
         duplicate = False
 
+        # izq, posicion = 0, 0
+        # der = len(vector)
+        # while izq < der:
+        #
+        #     centro = (izq + der) // 2
+        #     if vector[centro].codigo < codigo:
+        #         izq = centro + 1
+        #     # elif vector[centro].codigo > codigo:
+        #
+        #         der = centro
+
         izq = 0
         der = len(vector)
         while izq < der:
-
             centro = (izq + der) // 2
-            if vector[centro].codigo < codigo:
-                izq = centro + 1
-            elif vector[centro].codigo > codigo:
+            if vector[centro].codigo > codigo:
                 der = centro
+            else:  # plus petit OU égal : on cherche à droite
+                izq = centro + 1
+    # else:
+            #     duplicate = True
+            #     posicion = centro
+            #     break
 
-            else:
-                duplicate = True
-                break
-
-        if not duplicate:
-            vector[izq:izq] = [pantalonClase.Pantalon(codigo, modelo, largo, cintura, tela, stock)]
+        # if not duplicate:
+        # if izq > der:
+        #     posicion = izq
+        vector[izq:izq] = [pantalonClase.Pantalon(codigo, modelo, largo, cintura, tela, stock)]
 
     return vector
 
