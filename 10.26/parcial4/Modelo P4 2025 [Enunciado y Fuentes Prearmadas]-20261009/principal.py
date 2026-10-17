@@ -53,6 +53,7 @@ def validar(inf):
 def cargar_arreglo(v):
 
     der = len(v)
+    v.clear()
     izq, duplicado, primer = 0, False, True
     n = validar(0)
     for i in range(n):
@@ -92,11 +93,15 @@ def find_type(v):
     tipos_a_encontrar.append( int(input("alguno de tres tipos específicos t2")))
     tipos_a_encontrar.append( int(input("alguno de tres tipos específicos t3")))
 
+
+
     contador = 0
     for pokemon in v:
-        for i in range(3):
-            if pokemon.tipo == tipos_a_encontrar[i]:
-                contador += 1
+        # for i in range(3):
+        #     if pokemon.tipo == tipos_a_encontrar[i]:
+        #         contador += 1
+        if pokemon.tipo in tipos_a_encontrar:
+            contador += 1
 
     return contador
 
@@ -126,7 +131,7 @@ def mostrar_matriz(matriz):
 
 
 def crear_archivo(v, fd):
-    cant = len(v)
+    # cant = len(v)
     file = open(fd, "wb")
 
     for pokemon in v:

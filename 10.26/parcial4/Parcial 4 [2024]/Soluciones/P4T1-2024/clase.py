@@ -15,8 +15,8 @@ class Equipo:
         cadena += " - Monto: $" + str(self.monto)
         return cadena
 
-
-if __name__ == "__main__":
-    e = Equipo(100, "Equipo 1", 15, 2, 2548.3)
-    print(e)
+#
+# if __name__ == "__main__":
+#     e = Equipo(100, "Equipo 1", 15, 2, 2548.3)
+#     print(e)
 
