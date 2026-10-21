@@ -53,8 +53,8 @@ def moda(arregloTotal):
 
 
     for num2 in range(n):
-        if arregloRep[num2] > arregloRep[num2 - 1]:
-        # if arregloRep[num2] > modelMax:
+        # if arregloRep[num2] > arregloRep[num2 - 1]:
+        if arregloRep[num2] > modelMax:
             modelMax = arregloRep[num2]
             modalReal = arregloTotal[num2]
 

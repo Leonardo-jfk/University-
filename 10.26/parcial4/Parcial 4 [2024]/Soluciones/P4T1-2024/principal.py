@@ -116,7 +116,7 @@ def principal():
     v = []
     while op != 6:
         print("Menú de opciones")
-        print("1-Cargar")
+        print("1-Cargar")x
         print("2-Mostrar")
         print("3-Acumular")
         print("4-Generar archivo")
