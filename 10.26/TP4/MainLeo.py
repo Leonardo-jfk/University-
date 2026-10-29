@@ -100,6 +100,7 @@ def mostrar_resultados(afiliados, tratamientos):
 
     mayor_no_cubierto = -1
     dni_mayor_no_cubierto = -1
+    extraT, extraP = 0,0
 
     for t in tratamientos:
         afi = buscar_afiliado(afiliados, t.dni)
@@ -107,6 +108,11 @@ def mostrar_resultados(afiliados, tratamientos):
 
         total_cubierto += cubierto
         total_no_cubierto += no_cubierto
+        print(afi[1])
+
+        if v[A.obra_social in (4,7):
+            extraT += 1
+            extraP += afi.tope
 
         if tope:
             cant_topes += 1

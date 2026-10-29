@@ -83,10 +83,10 @@ class Tratamiento:
         if afiliado is None:
             return monto_final, 0.0, monto_final, False
 
-        cubierto = monto_final * porcentaje_cobertura(afiliado.nivel, self.complejidad)
+        cubierto = monto_final * porcentaje_cobertura(Afiliado.nivel, self.complejidad)
         tope_aplicado = False
-        if cubierto > afiliado.tope:
-            cubierto = afiliado.tope
+        if cubierto > Afiliado.tope:
+            cubierto = Afiliado.tope
             tope_aplicado = True
 
         return monto_final, cubierto, monto_final - cubierto, tope_aplicado
